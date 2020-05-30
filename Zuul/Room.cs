@@ -77,7 +77,9 @@ namespace Zuul
 		{
 			if (exits.ContainsKey(direction)) {
 				return (Room)exits[direction];
-			} else {
+			} 
+            else 
+            {
 				return null;
 			}
 

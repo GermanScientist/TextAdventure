@@ -69,7 +69,8 @@ namespace Zuul
             if(! player.IsAlive())
             {
                 Console.WriteLine("You have died, better luck next time.");
-            } else
+            } 
+            else
             {
                 Console.WriteLine("Thank you for playing.");
             }
@@ -156,7 +157,9 @@ namespace Zuul
 
 			if (nextRoom == null) {
 				Console.WriteLine("There is no door to "+direction+"!");
-			} else {
+			} 
+            else 
+            {
 				player.currentRoom = nextRoom;
                 player.DamagePlayer();
                 Console.WriteLine("health = " + player.GetPlayerHealth());
