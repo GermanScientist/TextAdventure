@@ -143,25 +143,25 @@ namespace Zuul
 	     */
 		private void goRoom(Command command)
 		{
-			    if(!command.hasSecondWord()) {
-				    // if there is no second word, we don't know where to go...
-				    Console.WriteLine("Go where?");
-				    return;
-			    }
+			if(!command.hasSecondWord()) {
+				// if there is no second word, we don't know where to go...
+				Console.WriteLine("Go where?");
+				return;
+			}
 
-			    string direction = command.getSecondWord();
+			string direction = command.getSecondWord();
 
-			    // Try to leave current room.
-			    Room nextRoom = player.currentRoom.getExit(direction);
+			// Try to leave current room.
+			Room nextRoom = player.currentRoom.getExit(direction);
 
-			    if (nextRoom == null) {
-				    Console.WriteLine("There is no door to "+direction+"!");
-			    } else {
-				    player.currentRoom = nextRoom;
-                    player.DamagePlayer();
-                    Console.WriteLine("health = " + player.GetPlayerHealth());
-                    Console.WriteLine(player.currentRoom.getLongDescription());
-			    }
+			if (nextRoom == null) {
+				Console.WriteLine("There is no door to "+direction+"!");
+			} else {
+				player.currentRoom = nextRoom;
+                player.DamagePlayer();
+                Console.WriteLine("health = " + player.GetPlayerHealth());
+                Console.WriteLine(player.currentRoom.getLongDescription());
+			}
 		}
 	}
 }
