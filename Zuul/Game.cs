@@ -165,8 +165,6 @@ namespace Zuul
                 Console.WriteLine("health = " + player.GetPlayerHealth());
                 Console.WriteLine(player.currentRoom.getLongDescription());
 			}
-
-            yo dit is jack
 		}
 	}
 }
