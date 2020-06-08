@@ -17,7 +17,7 @@ namespace Zuul
 
 		private void createRooms()
 		{
-			Room outside, theatre, pub, lab, office, attic, basement;
+			Room outside, theatre, pub, lab, office, attic, basement, gioIsGray;
 
 			// create the rooms
 			outside = new Room("outside the main entrance of the university");
@@ -27,6 +27,7 @@ namespace Zuul
 			office = new Room("in the computing admin office");
             attic = new Room("in the attic of the university");
             basement = new Room("in the basement of the university");
+            gioIsGray = new Room("Nou lars, sommige mensen willen uitkomen, en dat kan niet als dat soort dingen op het boord staan.");
 
 			// initialise room exits
 			outside.setExit("east", theatre);
