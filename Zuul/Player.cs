@@ -11,6 +11,8 @@ namespace Zuul
         public Room currentRoom;
         private int health;
 
+        public Inventory inventory = new Inventory(10);
+
         public Player()
         {
             health = 5;

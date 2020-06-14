@@ -22,8 +22,8 @@ namespace Zuul
             Potion potion;
 
             //Create the items
-            hammer = new Hammer("heavy hammer", 3);
-            potion = new Potion("magic potion", 1);
+            hammer = new Hammer("hammer", 3);
+            potion = new Potion("potion", 1);
 
             // create the rooms
             outside = new Room("outside the main entrance of the university");
@@ -127,6 +127,27 @@ namespace Zuul
                 case "look":
                     Console.WriteLine(player.currentRoom.getLongDescription());
                     player.currentRoom.inventory.Show();
+                    break;
+                case "take":
+                    player.currentRoom.inventory.Take(command.getSecondWord());
+
+                    Console.WriteLine("Unable to put item in player's inventory");
+                    /*
+                    player.inventory.Put(command.getSecondWord());
+                    player.inventory.Show();
+                    */
+                    break;
+                case "drop":
+                    player.inventory.Take(command.getSecondWord());
+
+                    Console.WriteLine("Unable to put item in the room's inventory");
+                    /*
+                    player.currentRoom.inventory.Put(command.getSecondWord());
+                    player.inventory.Show();
+                    */
+                    break;
+                case "showInventory":
+                    player.inventory.Show();
                     break;
 			}
 
