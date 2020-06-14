@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Potion.cs" />
+    <Compile Include="Hammer.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="CommandLibrary.cs" />

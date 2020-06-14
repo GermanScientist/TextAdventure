@@ -7,12 +7,14 @@ namespace Zuul
 		private string description;
 		private Dictionary<string, Room> exits; // stores exits of this room.
 
-		/**
+        public Inventory inventory = new Inventory(10);
+
+        /**
 	     * Create a room described "description". Initially, it has no exits.
 	     * "description" is something like "in a kitchen" or "in an open court
 	     * yard".
 	     */
-		public Room(string description)
+        public Room(string description)
 		{
 			this.description = description;
 			exits = new Dictionary<string, Room>();

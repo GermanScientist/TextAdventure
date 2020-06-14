@@ -7,7 +7,7 @@ namespace Zuul
 		private Parser parser;
         private Player player;
 
-		public Game ()
+        public Game ()
 		{
             player = new Player();
             parser = new Parser();
@@ -18,15 +18,25 @@ namespace Zuul
 		private void createRooms()
 		{
 			Room outside, theatre, pub, lab, office, attic, basement;
+            Hammer hammer;
+            Potion potion;
 
-			// create the rooms
-			outside = new Room("outside the main entrance of the university");
+            //Create the items
+            hammer = new Hammer("heavy hammer", 3);
+            potion = new Potion("magic potion", 1);
+
+            // create the rooms
+            outside = new Room("outside the main entrance of the university");
 			theatre = new Room("in a lecture theatre");
 			pub = new Room("in the campus pub");
 			lab = new Room("in a computing lab");
 			office = new Room("in the computing admin office");
             attic = new Room("in the attic of the university");
             basement = new Room("in the basement of the university");
+
+            //Put items in rooms
+            theatre.inventory.Put(hammer);
+            theatre.inventory.Put(potion);
 
 			// initialise room exits
 			outside.setExit("east", theatre);
@@ -116,6 +126,7 @@ namespace Zuul
 					break;
                 case "look":
                     Console.WriteLine(player.currentRoom.getLongDescription());
+                    player.currentRoom.inventory.Show();
                     break;
 			}
 
