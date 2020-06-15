@@ -48,7 +48,10 @@ namespace Zuul
 			returnstring += description;
 			returnstring += ".\n";
 			returnstring += getExitstring();
-			return returnstring;
+            returnstring += ".\n";
+            returnstring += "You see the following items: \n";
+            returnstring += this.inventory.Show();
+            return returnstring;
 		}
 
 		/**

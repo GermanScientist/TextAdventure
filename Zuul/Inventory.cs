@@ -57,14 +57,25 @@ namespace Zuul
             return null;
         }
 
-        public void Show()
+        public string Show()
         {
-            Console.WriteLine("Inventory contains:");
+            string returnstring = "";
             for (int i = 0; i < items.Count; i++)
             {
-                items[i].Show();
+                returnstring += items[i].Show();
             }
-            Console.WriteLine("Total weight: " + this.TotalWeight() + " out of " + this.max_weight);
+
+            return returnstring;
+        }
+
+        public void Swap(Inventory other, string item)
+        {
+            Item pickup = this.Take(item);
+
+            if (pickup != null)
+            {
+                other.Put(pickup);
+            }
         }
 
         private int TotalWeight()

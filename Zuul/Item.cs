@@ -18,9 +18,9 @@ namespace Zuul
         }
 
         // this method is executed when called on a subclass.
-        public void Show()
+        public string Show()
         {
-            Console.WriteLine(" - Item '" + this.description + "' weighs " + this.weight);
+            return " - Item '" + this.description + "' weighs " + this.weight;
         }
 
         // this method is 'virtual', and should be 'override' in subclasses.

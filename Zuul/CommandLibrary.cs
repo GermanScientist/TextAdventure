@@ -17,10 +17,10 @@ namespace Zuul
 				"quit",
 				"help",
                 "look",
-                "take",
+                "pickup",
                 "drop",
-                "showInventory"
-			};
+                "inventory"
+            };
 		}
 
 		/**

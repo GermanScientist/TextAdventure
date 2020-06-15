@@ -126,28 +126,16 @@ namespace Zuul
 					break;
                 case "look":
                     Console.WriteLine(player.currentRoom.getLongDescription());
-                    player.currentRoom.inventory.Show();
                     break;
-                case "take":
-                    player.currentRoom.inventory.Take(command.getSecondWord());
-
-                    Console.WriteLine("Unable to put item in player's inventory");
-                    /*
-                    player.inventory.Put(command.getSecondWord());
-                    player.inventory.Show();
-                    */
+                case "pickup":
+                    Pickup(command);
                     break;
                 case "drop":
-                    player.inventory.Take(command.getSecondWord());
-
-                    Console.WriteLine("Unable to put item in the room's inventory");
-                    /*
-                    player.currentRoom.inventory.Put(command.getSecondWord());
-                    player.inventory.Show();
-                    */
+                    Drop(command);
                     break;
-                case "showInventory":
-                    player.inventory.Show();
+                case "inventory":
+                    Console.WriteLine("Your inventory consists of: \n");
+                    Console.WriteLine(player.inventory.Show());
                     break;
 			}
 
@@ -155,13 +143,41 @@ namespace Zuul
 		}
 
 		// implementations of user commands:
+        private void Pickup(Command command)
+        {
+            if(!command.hasSecondWord())
+            {
+                Console.WriteLine("Pickup what?");
+                return;
+            }
 
-		/**
+            string itemToPickup = command.getSecondWord();
+            player.currentRoom.inventory.Swap(player.inventory, itemToPickup);
+
+            player.inventory.Show();
+        }
+
+        private void Drop(Command command)
+        {
+            if (!command.hasSecondWord())
+            {
+                Console.WriteLine("Pickup what?");
+                return;
+            }
+
+            string itemToDrop = command.getSecondWord();
+
+            player.inventory.Swap(player.currentRoom.inventory, itemToDrop);
+
+            player.inventory.Show();
+        }
+
+        /**
 	     * Print out some help information.
 	     * Here we print some stupid, cryptic message and a list of the
 	     * command words.
 	     */
-		private void printHelp()
+        private void printHelp()
 		{
 			Console.WriteLine("You are lost. You are alone.");
 			Console.WriteLine("You wander around at the university.");
