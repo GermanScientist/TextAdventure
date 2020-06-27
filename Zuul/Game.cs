@@ -19,11 +19,12 @@ namespace Zuul
 		{
 			Room outside, theatre, pub, lab, office, attic, basement;
             Hammer hammer;
-            Potion potion;
+            Potion potion, poison;
 
             //Create the items
-            hammer = new Hammer("hammer", 3);
-            potion = new Potion("potion", 1);
+            hammer = new Hammer("hammer", 3, "normal");
+            potion = new Potion("potion", 1, "good");
+            poison = new Potion("poison", 1, "bad");
 
             // create the rooms
             outside = new Room("outside the main entrance of the university");
@@ -36,7 +37,8 @@ namespace Zuul
 
             //Put items in rooms
             theatre.inventory.Put(hammer);
-            theatre.inventory.Put(potion);
+            lab.inventory.Put(potion);
+            lab.inventory.Put(poison);
 
 			// initialise room exits
 			outside.setExit("east", theatre);
@@ -208,8 +210,20 @@ namespace Zuul
 			} 
             else 
             {
+                Console.Clear();
+
 				player.currentRoom = nextRoom;
-                player.DamagePlayer();
+
+                Console.WriteLine("Amount of bad items = " + player.inventory.CheckForBadItems());
+
+                //Only damages player when he has a bad item
+                if (player.inventory.CheckForBadItems() > 0)
+                {
+                    //Damages player based on how many bad items he has
+                    player.DamagePlayer(player.inventory.CheckForBadItems());
+                    Console.WriteLine("You are injured, moving around will cost HP");
+                }
+
                 Console.WriteLine("health = " + player.GetPlayerHealth());
                 Console.WriteLine(player.currentRoom.getLongDescription());
 			}

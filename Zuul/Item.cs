@@ -10,11 +10,13 @@ namespace Zuul
     {
         public string description { get; set; }
         public int weight { get; set; }
+        public string type { get; set; }
 
-        public Item(string _description, int _weight)
+        public Item(string _description, int _weight, string _type)
         {
             this.description = _description;
             this.weight = _weight;
+            this.type = _type;
         }
 
         // this method is executed when called on a subclass.

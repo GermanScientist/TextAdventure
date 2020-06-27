@@ -9,7 +9,7 @@ namespace Zuul
     public class Hammer : Item
     {
         // Constructor of base class Item is called with arguments
-        public Hammer(string _description, int _weight) : base(_description, _weight)
+        public Hammer(string _description, int _weight, string _type) : base(_description, _weight, _type)
         {
         }
 

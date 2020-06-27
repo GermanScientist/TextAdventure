@@ -9,7 +9,7 @@ namespace Zuul
     public class Potion : Item
     {
         // Constructor of base class Item is called with arguments
-        public Potion(string _description, int _weight) : base(_description, _weight)
+        public Potion(string _description, int _weight, string _type) : base(_description, _weight, _type)
         {
         }
 

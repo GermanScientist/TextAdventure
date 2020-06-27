@@ -87,5 +87,19 @@ namespace Zuul
             }
             return totalWeight;
         }
+
+        public int CheckForBadItems()
+        {
+            int amount = 0;
+            for(int i = 0; i < items.Count; i++)
+            {
+                if(items[i].type == "bad")
+                {
+                    amount++;
+                }
+            }
+
+            return amount;
+        }
     }
 }
