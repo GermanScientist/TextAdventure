@@ -21,11 +21,13 @@ namespace Zuul
             Hammer hammer;
             Potion potion;
             Poison poison;
+            Key key;
 
             //Create the items
             hammer = new Hammer("hammer", 3, "normal");
             potion = new Potion("potion", 1, "good");
             poison = new Poison("poison", 1, "bad");
+            key = new Key("key", 2, "normal");
 
             // create the rooms
             outside = new Room("outside the main entrance of the university");
@@ -40,6 +42,7 @@ namespace Zuul
             theatre.inventory.Put(hammer);
             lab.inventory.Put(potion);
             lab.inventory.Put(poison);
+            pub.inventory.Put(key);
 
 			// initialise room exits
 			outside.setExit("east", theatre);
@@ -56,6 +59,7 @@ namespace Zuul
             lab.setExit("down", basement);
 
 			office.setExit("west", lab);
+            office.LockRoom(true);
 
             attic.setExit("down", theatre);
 
@@ -243,23 +247,44 @@ namespace Zuul
 			} 
             else 
             {
-                Console.Clear();
-
-				player.currentRoom = nextRoom;
-
-                Console.WriteLine("Amount of bad items = " + player.inventory.CheckForBadItems());
-
-                //Only damages player is injured
-                if (player.IsInjured())
+                if(nextRoom.IsLocked())
                 {
-                    //Damages player based on how many bad items he has
-                    player.DamagePlayer();
-                    Console.WriteLine("You are injured, moving around will cost HP");
-                }
+                    Console.WriteLine("You need a key to use this exit");
 
-                Console.WriteLine("health = " + player.GetPlayerHealth());
-                Console.WriteLine(player.currentRoom.getLongDescription());
+                    if (player.inventory.GetItem("key") != null)
+                    {
+                        GoToNextRoom(nextRoom);
+                        Console.WriteLine("You used a key to use this exit");
+                    } else
+                    {
+                        Console.WriteLine("You dont have a key for this exit");
+                    }
+                } 
+                else
+                {
+                    GoToNextRoom(nextRoom);
+                }
 			}
 		}
+
+        private void GoToNextRoom(Room nextRoom)
+        {
+            Console.Clear();
+
+            player.currentRoom = nextRoom;
+
+            Console.WriteLine("Amount of bad items = " + player.inventory.CheckForBadItems());
+
+            //Only damages player is injured
+            if (player.IsInjured())
+            {
+                //Damages player based on how many bad items he has
+                player.DamagePlayer();
+                Console.WriteLine("You are injured, moving around will cost HP");
+            }
+
+            Console.WriteLine("health = " + player.GetPlayerHealth());
+            Console.WriteLine(player.currentRoom.getLongDescription());
+        }
 	}
 }

@@ -8,6 +8,7 @@ namespace Zuul
 		private Dictionary<string, Room> exits; // stores exits of this room.
 
         public Inventory inventory = new Inventory(10);
+        private bool isLocked;
 
         /**
 	     * Create a room described "description". Initially, it has no exits.
@@ -18,6 +19,7 @@ namespace Zuul
 		{
 			this.description = description;
 			exits = new Dictionary<string, Room>();
+            this.isLocked = false;
 		}
 
 		/**
@@ -88,5 +90,15 @@ namespace Zuul
 				return null;
 			}
 		}
+
+        public void LockRoom(bool _value)
+        {
+            this.isLocked = _value;
+        }
+
+        public bool IsLocked()
+        {
+            return isLocked;
+        }
 	}
 }
