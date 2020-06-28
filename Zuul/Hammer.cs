@@ -16,7 +16,7 @@ namespace Zuul
         // this method 'overrides' the 'virtual' method in base class Item.
         public override void Use()
         {
-            Console.WriteLine("Hitting the nail on the head!");
+            Console.WriteLine("You used the hammer.");
         }
     }
 }

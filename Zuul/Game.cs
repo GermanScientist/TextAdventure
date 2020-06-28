@@ -19,12 +19,13 @@ namespace Zuul
 		{
 			Room outside, theatre, pub, lab, office, attic, basement;
             Hammer hammer;
-            Potion potion, poison;
+            Potion potion;
+            Poison poison;
 
             //Create the items
             hammer = new Hammer("hammer", 3, "normal");
             potion = new Potion("potion", 1, "good");
-            poison = new Potion("poison", 1, "bad");
+            poison = new Poison("poison", 1, "bad");
 
             // create the rooms
             outside = new Room("outside the main entrance of the university");
@@ -139,7 +140,10 @@ namespace Zuul
                     Console.WriteLine("Your inventory consists of: \n");
                     Console.WriteLine(player.inventory.Show());
                     break;
-			}
+                case "use":
+                    Use(command);
+                    break;
+            }
 
 			return wantToQuit;
 		}
@@ -172,6 +176,35 @@ namespace Zuul
             player.inventory.Swap(player.currentRoom.inventory, itemToDrop);
 
             player.inventory.Show();
+        }
+
+        private void Use(Command command)
+        {
+            if (!command.hasSecondWord())
+            {
+                Console.WriteLine("Use what?");
+                return;
+            }
+
+            string itemToUse = command.getSecondWord();
+            
+            if(player.inventory.GetItem(itemToUse) != null)
+            {
+                player.inventory.GetItem(itemToUse).Use();
+
+                if (player.inventory.GetItem(itemToUse).type == "bad")
+                {
+                    player.InjurePlayer();
+                } else if(player.inventory.GetItem(itemToUse).type == "good")
+                {
+                    player.HealPlayer(5);
+                }
+
+                player.inventory.Take(itemToUse);
+            } else
+            {
+                Console.WriteLine(itemToUse + " does not exist in inventory");
+            }
         }
 
         /**
@@ -216,11 +249,11 @@ namespace Zuul
 
                 Console.WriteLine("Amount of bad items = " + player.inventory.CheckForBadItems());
 
-                //Only damages player when he has a bad item
-                if (player.inventory.CheckForBadItems() > 0)
+                //Only damages player is injured
+                if (player.IsInjured())
                 {
                     //Damages player based on how many bad items he has
-                    player.DamagePlayer(player.inventory.CheckForBadItems());
+                    player.DamagePlayer();
                     Console.WriteLine("You are injured, moving around will cost HP");
                 }
 

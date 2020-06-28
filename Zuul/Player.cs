@@ -10,19 +10,29 @@ namespace Zuul
     {
         public Room currentRoom;
         private int health;
+        private int maxHealth;
+        private bool isInjured;
 
         public Inventory inventory = new Inventory(10);
 
         public Player()
         {
-            health = 5;
+            maxHealth = 5;
+            health = maxHealth;
+            isInjured = false;
         }
 
         public void HealPlayer(int amount = 1)
         {
             health += amount;
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
 
             Console.WriteLine("You have gained " + amount + " healthpoint");
+
+            isInjured = false;
         }
 
         public void DamagePlayer(int amount = 1)
@@ -47,6 +57,16 @@ namespace Zuul
             {
                 return false;
             }
+        }
+
+        public bool IsInjured()
+        {
+            return isInjured;
+        }
+
+        public void InjurePlayer()
+        {
+            isInjured = true;
         }
     }
 }

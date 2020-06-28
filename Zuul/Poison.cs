@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Zuul
 {
-    public class Potion : Item
+    public class Poison : Item
     {
         // Constructor of base class Item is called with arguments
-        public Potion(string _description, int _weight, string _type) : base(_description, _weight, _type)
+        public Poison(string _description, int _weight, string _type) : base(_description, _weight, _type)
         {
         }
 
         // this method 'overrides' the 'virtual' method in base class Item.
         public override void Use()
         {
-            Console.WriteLine("You drank a health potion!");
+            Console.WriteLine("Did-- ..Did you just ..drink poison? Even though you knew it was poison? It LITERALLY had a sign above it with 'WATCH OUT THIS IS POISON', yet you still drank it?");
         }
     }
 }

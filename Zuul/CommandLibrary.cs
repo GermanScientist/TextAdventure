@@ -19,7 +19,8 @@ namespace Zuul
                 "look",
                 "pickup",
                 "drop",
-                "inventory"
+                "inventory",
+                "use"
             };
 		}
 

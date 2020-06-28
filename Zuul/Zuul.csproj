@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Poison.cs" />
     <Compile Include="Potion.cs" />
     <Compile Include="Hammer.cs" />
     <Compile Include="Item.cs" />
